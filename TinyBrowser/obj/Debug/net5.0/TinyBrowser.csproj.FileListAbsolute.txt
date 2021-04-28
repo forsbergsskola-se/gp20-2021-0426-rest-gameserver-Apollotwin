@@ -1,0 +1,16 @@
+D:\FORSBERG assignments\gp20-2021-0426-rest-gameserver-Apollotwin\TinyBrowser\bin\Debug\net5.0\TinyBrowser.exe
+D:\FORSBERG assignments\gp20-2021-0426-rest-gameserver-Apollotwin\TinyBrowser\bin\Debug\net5.0\TinyBrowser.deps.json
+D:\FORSBERG assignments\gp20-2021-0426-rest-gameserver-Apollotwin\TinyBrowser\bin\Debug\net5.0\TinyBrowser.runtimeconfig.json
+D:\FORSBERG assignments\gp20-2021-0426-rest-gameserver-Apollotwin\TinyBrowser\bin\Debug\net5.0\TinyBrowser.runtimeconfig.dev.json
+D:\FORSBERG assignments\gp20-2021-0426-rest-gameserver-Apollotwin\TinyBrowser\bin\Debug\net5.0\TinyBrowser.dll
+D:\FORSBERG assignments\gp20-2021-0426-rest-gameserver-Apollotwin\TinyBrowser\bin\Debug\net5.0\ref\TinyBrowser.dll
+D:\FORSBERG assignments\gp20-2021-0426-rest-gameserver-Apollotwin\TinyBrowser\bin\Debug\net5.0\TinyBrowser.pdb
+D:\FORSBERG assignments\gp20-2021-0426-rest-gameserver-Apollotwin\TinyBrowser\obj\Debug\net5.0\TinyBrowser.csprojAssemblyReference.cache
+D:\FORSBERG assignments\gp20-2021-0426-rest-gameserver-Apollotwin\TinyBrowser\obj\Debug\net5.0\TinyBrowser.GeneratedMSBuildEditorConfig.editorconfig
+D:\FORSBERG assignments\gp20-2021-0426-rest-gameserver-Apollotwin\TinyBrowser\obj\Debug\net5.0\TinyBrowser.AssemblyInfoInputs.cache
+D:\FORSBERG assignments\gp20-2021-0426-rest-gameserver-Apollotwin\TinyBrowser\obj\Debug\net5.0\TinyBrowser.AssemblyInfo.cs
+D:\FORSBERG assignments\gp20-2021-0426-rest-gameserver-Apollotwin\TinyBrowser\obj\Debug\net5.0\TinyBrowser.csproj.CoreCompileInputs.cache
+D:\FORSBERG assignments\gp20-2021-0426-rest-gameserver-Apollotwin\TinyBrowser\obj\Debug\net5.0\TinyBrowser.dll
+D:\FORSBERG assignments\gp20-2021-0426-rest-gameserver-Apollotwin\TinyBrowser\obj\Debug\net5.0\ref\TinyBrowser.dll
+D:\FORSBERG assignments\gp20-2021-0426-rest-gameserver-Apollotwin\TinyBrowser\obj\Debug\net5.0\TinyBrowser.pdb
+D:\FORSBERG assignments\gp20-2021-0426-rest-gameserver-Apollotwin\TinyBrowser\obj\Debug\net5.0\TinyBrowser.genruntimeconfig.cache
