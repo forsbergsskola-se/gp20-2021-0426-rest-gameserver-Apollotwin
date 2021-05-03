@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Net.Sockets;
 using System.Text;
 
@@ -8,20 +9,43 @@ namespace TinyBrowser
     {
         static void Main(string[] args)
         {
-            var tcpClient = new TcpClient("acme.com", 80);
+            var host = "acme.com";
+            var port = 80;
+            var tcpClient = new TcpClient(host, port);
             if (tcpClient.Connected)
             {
-                Console.WriteLine("Connected");
-                var stream = tcpClient.GetStream();
-                stream.Write(Encoding.UTF8.GetBytes("GET \r\n"));
-                var buffer = new byte[1024];
-                var readStream = stream.Read(buffer, 0, buffer.Length);
-                var stringBuilder = new StringBuilder().AppendFormat("{0}", Encoding.ASCII.GetString(buffer, 0, readStream));
-                Console.WriteLine(stringBuilder);
-                stream.Close();
+                // Send a HTTP-Request for the Root-Page
+                var streamWriter = new StreamWriter(tcpClient.GetStream());
+                streamWriter.Write("GET / HTTP/1.1\r\nHost: acme.com\r\n\r\n");
+                streamWriter.Flush();
+        
+                // Read the Response
+                var streamReader = new StreamReader(tcpClient.GetStream());
+                var response = streamReader.ReadToEnd();
+                Console.WriteLine(response);
+                tcpClient.GetStream().Close();
                 tcpClient.Close();
+
+                var titleText = FindTextBetweenTags(response, "<title>", "</title>");
+                Console.WriteLine("Retrived string: " +titleText);
             }
-            
+        }
+
+        static string FindTextBetweenTags(string response, string start, string end)
+        {
+            var indexStart = response.IndexOf(start);
+            var indexEnd = response.IndexOf(end);
+            var title = string.Empty;
+            if(indexStart != -1)
+            {
+                indexStart += start.Length;
+                if (indexEnd > indexStart)
+                {
+                    title = response[indexStart..indexEnd];
+                }
+            }
+
+            return title;
         }
     }
 }
