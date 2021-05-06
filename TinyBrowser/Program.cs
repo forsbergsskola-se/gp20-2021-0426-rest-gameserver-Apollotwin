@@ -14,27 +14,27 @@ namespace TinyBrowser
             var tcpClient = new TcpClient(host, port);
             if (tcpClient.Connected)
             {
-                // Send a HTTP-Request for the Root-Page
                 var streamWriter = new StreamWriter(tcpClient.GetStream());
                 streamWriter.Write("GET / HTTP/1.1\r\nHost: acme.com\r\n\r\n");
                 streamWriter.Flush();
-        
-                // Read the Response
+                
                 var streamReader = new StreamReader(tcpClient.GetStream());
                 var response = streamReader.ReadToEnd();
                 Console.WriteLine(response);
                 tcpClient.GetStream().Close();
                 tcpClient.Close();
-
-                var titleText = FindTextBetweenTags(response, "<title>", "</title>");
-                Console.WriteLine("Retrived string: " +titleText);
+                var index = 0;
+                var titleText = FindTextBetweenTags(response, "<title>", "</title>", ref index);
+                Console.WriteLine("Retrieved: " +titleText);
+                var text = FindTextBetweenTags(response, "<a href=", "</a>", ref index);
+                Console.WriteLine(text);
             }
         }
 
-        static string FindTextBetweenTags(string response, string start, string end)
+        static string FindTextBetweenTags(string response, string start, string end, ref int startIndex)
         {
-            var indexStart = response.IndexOf(start);
-            var indexEnd = response.IndexOf(end);
+            var indexStart = response.IndexOf(start, startIndex);
+            var indexEnd = response.IndexOf(end, indexStart);
             var title = string.Empty;
             if(indexStart != -1)
             {
@@ -45,6 +45,8 @@ namespace TinyBrowser
                 }
             }
 
+            startIndex = indexEnd;
+            
             return title;
         }
     }
