@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Net.Http;
+using System.Net.Http.Headers;
 
 namespace GitHubExplorer
 {
@@ -6,7 +8,10 @@ namespace GitHubExplorer
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            string username = Console.ReadLine();
+            var httpClient = new HttpClient();
+            httpClient.DefaultRequestHeaders.Add($"https://api.github.com/users/{username}", username);
+
         }
     }
 }
