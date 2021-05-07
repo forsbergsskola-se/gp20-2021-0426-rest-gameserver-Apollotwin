@@ -26,8 +26,14 @@ namespace TinyBrowser
                 var index = 0;
                 var titleText = FindTextBetweenTags(response, "<title>", "</title>", ref index);
                 Console.WriteLine("Retrieved: " +titleText);
-                var text = FindTextBetweenTags(response, "<a href=", "</a>", ref index);
-                Console.WriteLine(text);
+                int j = 1;
+                for (int i = 0; i < response.Length; i++)
+                {
+                    var text = FindTextBetweenTags(response, "<a href=" + '"' + "mailto" + ':', '"'+">", ref index);
+                    Console.WriteLine(j+": " + text + " (the url should be here)");
+                    j++;
+                }
+                
             }
         }
 
