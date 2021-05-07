@@ -11,7 +11,6 @@ namespace GitHubExplorer
             string username = Console.ReadLine();
             var httpClient = new HttpClient();
             httpClient.DefaultRequestHeaders.Add($"https://api.github.com/users/{username}", username);
-
         }
     }
 }
