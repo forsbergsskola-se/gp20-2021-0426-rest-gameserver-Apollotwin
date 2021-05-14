@@ -15,32 +15,40 @@ namespace TinyBrowser
         {
             var host = "acme.com";
             var port = 80;
+            var response = string.Empty;
+            var urlList = new List<string>();
+            var defaultMessage = "";
+            var lastMessage = string.Empty;
             var tcpClient = new TcpClient(host, port);
-            var response = SendAndReadMessage(tcpClient, "");
-            var urlList = GetUrlList(response);
-            Console.Clear();
+            var startOfProgram = true;
+            int userInput = 0;
+
             
-            for (int i = 0; i < urlList.Count; i++)
-            {
-                Console.WriteLine($"{i}: {urlList[i]}");
-            }
             
             while (true)
             {
-                //TODO: Exeption handle this userinput
-                Console.WriteLine("Choose directory: ");
-                var userInput = int.Parse(Console.ReadLine());
-                var latestInput = "";
-                tcpClient = new TcpClient(host, port);
-                if (userInput == urlList.Count + 1) {
-                    response = SendAndReadMessage(tcpClient, latestInput);
-                }else {
-                    latestInput = urlList[userInput];
-                    response = SendAndReadMessage(tcpClient, urlList[userInput]);
+                if (startOfProgram)
+                {
+                    tcpClient = new TcpClient(host, port);
+                    response = SendAndReadMessage(tcpClient, defaultMessage);
+                    lastMessage = defaultMessage;
+                    urlList = GetUrlList(response);
+                    ListURLAlternatives(urlList);
+                    Console.WriteLine("Choose directory: ");
+                    userInput = int.Parse(Console.ReadLine()); //TODO: Exeption handle this userinput
+                    startOfProgram = false;
                 }
+
+                tcpClient = new TcpClient(host, port);
+                response = SendAndReadMessage(tcpClient, urlList[userInput]);
+                var saveMessage = urlList[userInput];
                 urlList = GetUrlList(response);
-                Console.Clear();
+                urlList.Add(lastMessage);
+                lastMessage = saveMessage;
                 ListURLAlternatives(urlList);
+                Console.WriteLine("Choose directory: ");
+                userInput = int.Parse(Console.ReadLine());
+
             }
         }
 
@@ -48,9 +56,13 @@ namespace TinyBrowser
         {
             for (int i = 0; i < urlList.Count; i++)
             {
-                Console.WriteLine($"{i}: {urlList[i]}");
+                if (i == urlList.Count - 1 && urlList[i] == "") {
+                    Console.WriteLine($"{i}: Back to {urlList[i]}");
+                } else {
+                    Console.WriteLine($"{i}: {urlList[i]}");
+                }
+                
             }
-            Console.WriteLine($"{urlList.Count}: Back");
         }
 
         private static List<string> GetUrlList(string response)
