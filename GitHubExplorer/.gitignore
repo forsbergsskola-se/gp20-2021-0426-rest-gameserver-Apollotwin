@@ -42,8 +42,8 @@
 # *.iml
 # *.ipr
 
-bin/
-obj/
+/bin/
+/obj/
 
 # CMake
 cmake-build-*/
